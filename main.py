@@ -100,10 +100,11 @@ def main():
     clock = pygame.time.Clock()
     FPS = 30
     SCORE = 0
+    background_y = -480
     stopped = False
     all_sprites = pygame.sprite.Group()
     player = Player(all_sprites)
-    background_image = load_image('background.png')
+    background_image = load_image('background_long.png')
 
     running = True
     while running:
@@ -122,8 +123,11 @@ def main():
                 if event.key in (pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d):
                     if event.key in player.pressed_keys:
                         player.pressed_keys.remove(event.key)
-        screen.blit(background_image, (0, 0))
+        screen.blit(background_image, (0, background_y))
         if not stopped:
+            background_y += 10
+            if background_y == 0:
+                background_y = -480
             all_sprites.update(1 / FPS)
             for sprite in all_sprites:
                 if 480 <= sprite.y or 0 >= sprite.y + sprite.rect.height:
@@ -153,3 +157,7 @@ def main():
         screen.blit(FONT.render('SCORE: ' + str(int(SCORE)), False, (255, 255, 255)), (0, 0))
         pygame.display.flip()
         clock.tick(FPS)
+
+
+if __name__ == '__main__':
+    main()
