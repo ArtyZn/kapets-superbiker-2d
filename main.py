@@ -32,20 +32,20 @@ class Car(pygame.sprite.Sprite):
         self.on_cooldown = True
         if self.row == 1:
             self.x = self.rect.x = 95
-            self.speed = 50
+            self.speed = 100
             self.spawn_cooldown = 2
         elif self.row == 2:
             self.x = self.rect.x = 185
-            self.speed = 50
+            self.speed = 100
             self.spawn_cooldown = 2
         elif self.row == 3:
             self.x = self.rect.x = 290
-            self.speed = 100
+            self.speed = 250
             self.image = pygame.transform.flip(self.image, 0, 1)
             self.spawn_cooldown = 1
         elif self.row == 4:
             self.x = self.rect.x = 380
-            self.speed = 100
+            self.speed = 250
             self.image = pygame.transform.flip(self.image, 0, 1)
             self.spawn_cooldown = 1
 
@@ -125,7 +125,7 @@ def main():
                         player.pressed_keys.remove(event.key)
         screen.blit(background_image, (0, background_y))
         if not stopped:
-            background_y += 10
+            background_y += 5
             if background_y == 0:
                 background_y = -480
             all_sprites.update(1 / FPS)
